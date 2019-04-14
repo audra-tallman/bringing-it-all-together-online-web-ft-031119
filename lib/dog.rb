@@ -45,13 +45,22 @@ attr_accessor :id, :name, :breed
     dog
   end
     
-    
   def self.find_by_id(id)
    sql = "SELECT * FROM dogs WHERE id = ?"
     result = DB[:conn].execute(sql, id)[0]
     Dog.new(result[0], result[1], result[2])
   end
-    
+   
+  def self.find_or_create_by(name:, breed:)
+    song = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
+    if !dog.empty?
+      dog_info = dog[0]
+      dog = Dog.new(dog_info[0], dog_info[1], dog_info[2])
+    else
+      dog = self.create(name: name, breed: breed)
+    end
+      dog
+  end   
     
   def self.new_from_db(row)
     dog = self.new
