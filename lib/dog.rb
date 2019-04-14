@@ -67,7 +67,6 @@ attr_accessor :id, :name, :breed
     dog.id = row[0]
     dog.name = row[1]
     dog.breed = row[2]
-    dog
   end  
   
   def self.find_by_name(name)
