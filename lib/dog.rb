@@ -45,19 +45,6 @@ attr_accessor :name, :breed, :id
     dog.save
     dog
   end
-    
-  def self.find_by_id(id)
-   sql = <<-SQL
-      SELECT *
-      FROM dogs
-      WHERE id = ?
-      LIMIT 1
-    SQL
-
-    DB[:conn].execute(sql,id).map do |row|
-      self.new_from_db(row)
-    end.first
-  end
    
   def self.find_or_create_by(name:, breed:)
     sql = <<-SQL
@@ -86,7 +73,20 @@ attr_accessor :name, :breed, :id
     self.new(id: id, name: name, breed: breed)
   end  
   
-  def self.find_by_name(name)
+  def self.find_by_id(id)
+    sql = <<-SQL
+      SELECT *
+      FROM dogs
+      WHERE id = ?
+      LIMIT 1
+    SQL
+
+    DB[:conn].execute(sql,id).map do |row|
+      self.new_from_db(row)
+    end.first
+  end
+    
+    def self.find_by_name(name)
     sql = <<-SQL
       SELECT *
       FROM dogs
