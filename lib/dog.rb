@@ -29,7 +29,7 @@ attr_accessor :id, :name, :breed
       self.update
     else
       sql = <<-SQL
-        INSERT INTO students (name, breed)
+        INSERT INTO dogs (name, breed)
         VALUES (?, ?)
       SQL
 
@@ -40,16 +40,15 @@ attr_accessor :id, :name, :breed
   end 
   
   def self.create(name, breed)
-    dog = Student.new(name, breed)
+    dog = Dog.new(name, breed)
     dog.save
   end
     
     
   def self.find_by_id(id)
-    
     sql = <<-SQL
       SELECT *
-      FROM students
+      FROM dogs
       WHERE id = ?
       LIMIT 1
     SQL
