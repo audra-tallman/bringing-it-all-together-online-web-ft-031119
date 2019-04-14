@@ -61,7 +61,7 @@ attr_accessor :name, :breed, :id
           LIMIT 1
         SQL
         
-    dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
+    dog = DB[:conn].execute(sql, name, breed)
     
     if !dog.empty?
       dog_info = dog[0]
