@@ -66,7 +66,7 @@ attr_accessor :id, :name, :breed
     dog = self.new
     dog.id = row[0]
     dog.name = row[1]
-    dog.grade = row[2]
+    dog.breed = row[2]
     dog
   end  
   
